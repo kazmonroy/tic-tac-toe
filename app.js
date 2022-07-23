@@ -29,9 +29,6 @@ const board = (() => {
       endGame(false, currentPlayer);
     } else if (isDraw()) {
       endGame(true);
-    } else {
-      //   switchPlayer();
-      //   addMarkHover();
     }
   };
 
