@@ -16,7 +16,6 @@
 body {
     background-color: var(--bg-color);
     font-family: 'Poppins', sans-serif;
-
 }
 
 .main {
@@ -28,9 +27,6 @@ body {
     width: 100vw;
 }
 
-
-
-
 .board {
     max-height: 400px;
     max-width: 400px;
@@ -40,7 +36,6 @@ body {
     align-content: center;
     justify-content: center;
     position: relative;
-
 }
 
 .cell {
@@ -70,14 +65,12 @@ body {
 }
 
 /* X mark */
-
 .cell.x::before, .cell.x::after, .board.x .cell:not(.x):not(.o):hover::before, .board.x .cell:not(.x):not(.o):hover::after {
     content: '';
     width: calc(var(--mark-size)* .15);
     height: var(--mark-size);
     background-color: var(--x-mark);
     position: absolute;
-  
 }
 
 .cell.x::before, .board.x .cell:not(.x):not(.o):hover::before {
@@ -93,7 +86,6 @@ body {
 }
 
 /* O mark */
-
 .cell.o::before, .cell.o::after, .board.o .cell:not(.x):not(.o):hover::before, .board.o .cell:not(.x):not(.o):hover::after {
     content: '';
     width: calc(var(--mark-size) * .9);
@@ -101,7 +93,6 @@ body {
     background-color: var(--o-mark);
     position: absolute;
     border-radius: 50%;
-  
 }
 
 .cell.o::after, .board.o .cell:not(.x):not(.o):hover::after {
@@ -112,7 +103,6 @@ body {
 .board.o .cell:not(.x):not(.o):hover::before {
     background-color: rgba(205, 13, 103, .2);
 }
-
 
 .cell.x, .cell.o {
     cursor: not-allowed;
@@ -134,7 +124,6 @@ body {
 }
 
 /* Player display */
-
 h3 {
     color: white;
     margin-bottom: 40px;
