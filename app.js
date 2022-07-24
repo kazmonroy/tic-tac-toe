@@ -54,7 +54,7 @@ const board = (() => {
     }
 
     setTimeout(() => {
-      restart();
+      restartGame();
     }, 2000);
   };
 
@@ -81,14 +81,20 @@ const board = (() => {
   };
 
   addMarkHover = () => {
-    board.classList.remove(xPlayer);
-    board.classList.remove(oPlayer);
-
+    resetBoard();
     if (oTurn) {
       board.classList.add(oPlayer);
     } else {
       board.classList.add(xPlayer);
     }
+  };
+
+  resetBoard = () => {
+    board.classList.remove(xPlayer);
+    board.classList.remove(oPlayer);
+    playerDisplay.classList.remove("x_win");
+    playerDisplay.classList.remove("o_win");
+    playerDisplay.classList.remove("draw");
   };
 
   startGame = () => {
@@ -97,24 +103,20 @@ const board = (() => {
       cell.addEventListener("click", play, { once: true });
     });
     addMarkHover();
-    playerDisplay.classList.remove("x_win");
-    playerDisplay.classList.remove("o_win");
-    playerDisplay.classList.remove("draw");
   };
 
-  restart = () => {
+  restartGame = () => {
     cells.forEach((cell) => {
       cell.classList.remove(oPlayer);
       cell.classList.remove(xPlayer);
     });
-    board.classList.remove(xPlayer);
-    board.classList.remove(oPlayer);
-    playerDisplay.innerText = "Play again";
 
+    playerDisplay.innerText = "Play again";
+    resetBoard();
     startGame();
   };
 
-  restartBtn.addEventListener("click", restart);
+  restartBtn.addEventListener("click", restartGame);
 
   return { startGame };
 })();
