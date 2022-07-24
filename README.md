@@ -6,8 +6,7 @@ This project was a fun one to build. Got more confidenr with my CSS skills and p
 
 ## Built with
 
-| Tools        | README                                                                                                                    |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| JavaScript   | [https://www.javascript.com/][pldb]                                                                                       |
-| Google Fonts | [https://fonts.google.com/specimen/Poppins?query=poppins][plgh]                                                           |
-| TOP          | [https://www.theodinproject.com/lessons/node-path-javascript-factory-functions-and-the-module-pattern#name-spacing][plgh] |
+| Tools        | README                                    |
+| ------------ | ----------------------------------------- |
+| JavaScript   | https://www.javascript.com/               |
+| Google Fonts | https://fonts.google.com/specimen/Poppins |
