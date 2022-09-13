@@ -16,15 +16,36 @@
 body {
     background-color: var(--bg-color);
     font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
 
 .main {
     display: flex;
-    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    height: 50vh;
+    width: 100vw;
+}
+
+.scoreboard {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
+    margin: 20px 0px;
+}
+
+.scoreboard > * {
+    margin-right: 40px;
+}
+
+.score.x {
+    color: var(--x-mark) ;
+}
+
+.score.o {
+    color: var(--o-mark);
 }
 
 .board {
@@ -32,7 +53,6 @@ body {
     max-width: 400px;
     display: grid;
     grid-template-columns: repeat(3, auto);
- 
     align-content: center;
     justify-content: center;
     position: relative;
@@ -136,6 +156,11 @@ span.o_win {
 
 span.x_win {
     color: var(--x-mark);
+}
+
+.turn-status {
+    text-align: center;
+    margin-top: 50px;
 }
 
 .turn-status.draw {

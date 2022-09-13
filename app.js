@@ -3,10 +3,10 @@ const board = (() => {
   const board = document.querySelector(".board");
   const restartBtn = document.querySelector(".restart-btn");
   const playerDisplay = document.querySelector(".turn-status");
+  const xScore = document.querySelector(".x-score");
+  const oScore = document.querySelector(".o-score");
 
   let oTurn;
-  const oPlayer = "o";
-  const xPlayer = "x";
   const winCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -18,21 +18,35 @@ const board = (() => {
     [2, 4, 6],
   ];
 
-  play = (e) => {
+  let xWins = 0;
+  let oWins = 0;
+
+  // Players
+  const _Players = (mark) => {
+    return { mark };
+  };
+
+  const player1 = _Players("o");
+  const player2 = _Players("x");
+  const oPlayer = player1.mark;
+  const xPlayer = player2.mark;
+
+  _play = (e) => {
     const cell = e.target;
     const currentPlayer = oTurn ? oPlayer : xPlayer;
-    addMark(cell, currentPlayer);
+    _addMark(cell, currentPlayer);
     switchPlayer();
-    addMarkHover();
+    _addMarkHover();
 
-    if (checkWin(currentPlayer)) {
-      endGame(false, currentPlayer);
+    if (_checkWin(currentPlayer)) {
+      countWins(currentPlayer);
+      _endGame(false, currentPlayer);
     } else if (isDraw()) {
-      endGame(true);
+      _endGame(true);
     }
   };
 
-  checkWin = (currentPlayer) => {
+  _checkWin = (currentPlayer) => {
     return winCombinations.some((combination) => {
       return combination.every((index) => {
         return cells[index].classList.contains(currentPlayer);
@@ -40,7 +54,7 @@ const board = (() => {
     });
   };
 
-  endGame = (draw, currentPlayer) => {
+  _endGame = (draw, currentPlayer) => {
     if (draw) {
       playerDisplay.innerText = `It's a draw!`;
       playerDisplay.classList.add("draw");
@@ -54,8 +68,20 @@ const board = (() => {
     }
 
     setTimeout(() => {
-      restartGame();
+      _restartGame();
     }, 2000);
+  };
+
+  countWins = (currentPlayer) => {
+    if (currentPlayer === xPlayer) {
+      xWins++;
+      // console.log("x + 1");
+      xScore.textContent = xWins;
+    } else if (currentPlayer === oPlayer) {
+      oWins++;
+      // console.log("o + 1");
+      oScore.textContent = oWins;
+    }
   };
 
   isDraw = () => {
@@ -76,12 +102,12 @@ const board = (() => {
     }
   };
 
-  addMark = (cell, currentPlayer) => {
+  _addMark = (cell, currentPlayer) => {
     cell.classList.add(currentPlayer);
   };
 
-  addMarkHover = () => {
-    resetBoard();
+  _addMarkHover = () => {
+    _resetBoard();
     if (oTurn) {
       board.classList.add(oPlayer);
     } else {
@@ -89,7 +115,7 @@ const board = (() => {
     }
   };
 
-  resetBoard = () => {
+  _resetBoard = () => {
     board.classList.remove(xPlayer);
     board.classList.remove(oPlayer);
     playerDisplay.classList.remove("x_win");
@@ -100,23 +126,23 @@ const board = (() => {
   startGame = () => {
     oTurn = false;
     cells.forEach((cell) => {
-      cell.addEventListener("click", play, { once: true });
+      cell.addEventListener("click", _play, { once: true });
     });
-    addMarkHover();
+    _addMarkHover();
   };
 
-  restartGame = () => {
+  _restartGame = () => {
     cells.forEach((cell) => {
       cell.classList.remove(oPlayer);
       cell.classList.remove(xPlayer);
     });
 
     playerDisplay.innerText = "Play again";
-    resetBoard();
+    _resetBoard();
     startGame();
   };
 
-  restartBtn.addEventListener("click", restartGame);
+  restartBtn.addEventListener("click", _restartGame);
 
   return { startGame };
 })();
